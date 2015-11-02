@@ -2,10 +2,21 @@ import pygame
 
 pygame.init()
 
-gameDisplay = pygame.display.set_mode((800, 600)) #Sets game window
+display_width = 800
+display_height = 600
+
+black = (0,0,0)
+white = (255,255,255)
+red = (255,0,0)
+green = (0,255,0)
+blue = (0,0,255)
+
+gameDisplay = pygame.display.set_mode((display_width, display_height)) #Sets game window
 pygame.display.set_caption('Racing Game')
 
 clock = pygame.time.Clock() #Sets game clock
+
+car_image = pygame.image.load('car.png')
 
 crashed = False #End game var
 
