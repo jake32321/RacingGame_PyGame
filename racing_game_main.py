@@ -18,6 +18,12 @@ clock = pygame.time.Clock() #Sets game clock
 
 car_image = pygame.image.load('car-from-top-hi.png')
 
+def car(x,y): #Function defines the car and where it will be displayed
+	gameDisplay.blit(car_image,(x,y))
+
+x = (display_width * 0.45)
+y = (display_height * 0.80)
+
 crashed = False #End game var
 
 while not crashed:  #Starts the game loop
@@ -28,6 +34,7 @@ while not crashed:  #Starts the game loop
 		print(event)  #Prints events as they happen
 
 	pygame.display.update()
+	car(x, y)
 	clock.tick(60)
 
 pygame.quit()
