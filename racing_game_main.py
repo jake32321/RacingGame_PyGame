@@ -22,7 +22,9 @@ def car(x,y): #Function defines the car and where it will be displayed
 	gameDisplay.blit(car_image,(x,y))
 
 x = (display_width * 0.45)
-y = (display_height * 0.80)
+y = (display_height * 0.70)
+
+x_change = 0
 
 crashed = False #End game var
 
@@ -31,9 +33,21 @@ while not crashed:  #Starts the game loop
 		if event.type == pygame.QUIT:
 			crashed = True
 
-		print(event)  #Prints events as they happen
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_LEFT:
+				x_change = -5
+			elif event.key == pygame.K_RIGHT:
+				x_change = 5
 
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+				x_change = 0
+
+		print(event)  #Prints events as they happen	
+			
+	x += x_change #Sets the new x based on the event
 	pygame.display.update()
+	gameDisplay.fill(white)
 	car(x, y)
 	clock.tick(60)
 
