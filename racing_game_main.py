@@ -16,7 +16,7 @@ pygame.display.set_caption('Racing Game')
 
 clock = pygame.time.Clock() #Sets game clock
 
-car_image = pygame.image.load('car.png')
+car_image = pygame.image.load('car-from-top-hi.png')
 
 crashed = False #End game var
 
