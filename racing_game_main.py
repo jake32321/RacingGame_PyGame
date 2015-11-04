@@ -86,9 +86,16 @@ def game_loop(): #Needed for game functionality
 
 		if x > display_width-car_width or x < 0:
 			crash()
+
 		if road_objectStartY > display_height:
 			road_objectStartY = 0 - road_objectHeight
 			road_objectStartX = random.randrange(0, display_width)
+
+		if y < road_objectStartY+road_objectHeight:
+			print('step_one_PASS')
+			if x > road_objectStartX and x < road_objectStartX+road_objectWidth or x+car_width > road_objectStartX and x+car_width < road_objectStartX+road_objectWidth:
+				print('step_two_PASS')
+				crash()
 
 		clock.tick(60)
 
