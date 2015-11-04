@@ -100,8 +100,8 @@ def game_loop(): #Needed for game functionality
 			road_objectStartX = random.randrange(0, display_width)
 			dodged += 1
 			if dodged%3 == 0:
-				road_objectWidth += (road_objectWidth*0.30)
-				road_objectSpeed += 0.30
+				road_objectWidth += (road_objectWidth*0.10)
+				road_objectSpeed += 0.10
 
 		if y < road_objectStartY+road_objectHeight:
 			print('step_one_PASS')
