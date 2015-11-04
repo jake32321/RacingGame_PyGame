@@ -74,9 +74,9 @@ def game_loop(): #Needed for game functionality
 
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_LEFT:
-					x_change = -5
+					x_change = -10
 				elif event.key == pygame.K_RIGHT:
-					x_change = 5
+					x_change = 10
 
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -99,6 +99,9 @@ def game_loop(): #Needed for game functionality
 			road_objectStartY = 0 - road_objectHeight
 			road_objectStartX = random.randrange(0, display_width)
 			dodged += 1
+			if dodged%3 == 0:
+				road_objectWidth += (road_objectWidth*0.30)
+				road_objectSpeed += 0.30
 
 		if y < road_objectStartY+road_objectHeight:
 			print('step_one_PASS')
