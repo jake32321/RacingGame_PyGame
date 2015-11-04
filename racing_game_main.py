@@ -1,4 +1,5 @@
 import pygame
+import random
 import time
 
 pygame.init()
@@ -19,6 +20,9 @@ pygame.display.set_caption('Racing Game')
 clock = pygame.time.Clock() #Sets game clock
 
 car_image = pygame.image.load('car-from-top-hi.png')
+
+def road_object(road_objectX, road_objectY, road_objectW, road_objectH, color):
+	pygame.draw.rect(gameDisplay, color, [road_objectX, road_objectY, road_objectW, road_objectH])
 
 def crash(): #Displays message at the end of the game
 	message_display('You Crashed')
@@ -47,6 +51,12 @@ def game_loop(): #Needed for game functionality
 
 	x_change = 0
 
+	road_objectStartX = random.randrange(0, display_width)
+	road_objectStartY = -600 
+	road_objectSpeed = 7 
+	road_objectWidth = 100
+	road_objectHeight = 100
+
 	gameExit = False #End game var
 
 	while not gameExit:  #Starts the game loop
@@ -70,10 +80,15 @@ def game_loop(): #Needed for game functionality
 		x += x_change #Sets the new x based on the event
 		pygame.display.update()
 		gameDisplay.fill(white)
+		road_object(road_objectStartX, road_objectStartY, road_objectWidth, road_objectHeight, black)
+		road_objectStartY += road_objectSpeed
 		car(x, y)
 
 		if x > display_width-car_width or x < 0:
 			crash()
+		if road_objectStartY > display_height:
+			road_objectStartY = 0 - road_objectHeight
+			road_objectStartX = random.randrange(0, display_width)
 
 		clock.tick(60)
 
