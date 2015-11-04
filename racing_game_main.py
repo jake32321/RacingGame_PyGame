@@ -24,6 +24,11 @@ car_image = pygame.image.load('car-from-top-hi.png')
 def road_object(road_objectX, road_objectY, road_objectW, road_objectH, color):
 	pygame.draw.rect(gameDisplay, color, [road_objectX, road_objectY, road_objectW, road_objectH])
 
+def objects_dodged(count):
+	font = pygame.font.SysFont(None, 25)
+	text = font.render("Dodged: "+str(count), True, green)
+	gameDisplay.blit(text, (0,0))
+
 def crash(): #Displays message at the end of the game
 	message_display('You Crashed')
 
@@ -57,6 +62,8 @@ def game_loop(): #Needed for game functionality
 	road_objectWidth = 100
 	road_objectHeight = 100
 
+	dodged = 0
+
 	gameExit = False #End game var
 
 	while not gameExit:  #Starts the game loop
@@ -79,10 +86,11 @@ def game_loop(): #Needed for game functionality
 
 		x += x_change #Sets the new x based on the event
 		pygame.display.update()
-		gameDisplay.fill(white)
+		gameDisplay.fill(blue)
 		road_object(road_objectStartX, road_objectStartY, road_objectWidth, road_objectHeight, black)
 		road_objectStartY += road_objectSpeed
 		car(x, y)
+		objects_dodged(dodged)
 
 		if x > display_width-car_width or x < 0:
 			crash()
@@ -90,6 +98,7 @@ def game_loop(): #Needed for game functionality
 		if road_objectStartY > display_height:
 			road_objectStartY = 0 - road_objectHeight
 			road_objectStartX = random.randrange(0, display_width)
+			dodged += 1
 
 		if y < road_objectStartY+road_objectHeight:
 			print('step_one_PASS')
